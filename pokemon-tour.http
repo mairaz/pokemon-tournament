@@ -1,0 +1,6 @@
+@pokemon_tour_HostAddress = http://localhost:5254
+
+GET {{pokemon_tour_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

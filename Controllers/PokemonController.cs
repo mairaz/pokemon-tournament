@@ -12,19 +12,21 @@ namespace pokemon_tour.Controllers
     public class PokemonController : ControllerBase
     {
         private PokemonService _pokemonService;
-        public PokemonController(PokemonService pokemonService){
+        public PokemonController(PokemonService pokemonService)
+        {
 
             _pokemonService = pokemonService;
         }
-      [HttpGet("statistics")]
-        public async Task<ActionResult> GetPokemonStatistics([FromQuery] string sortOption, [FromQuery] string sortDirection){
-
+        [HttpGet("statistics")]
+        public async Task<ActionResult> GetPokemonStatistics([FromQuery] string sortBy, [FromQuery] string sortDirection = "asc")
+        {            
             var pokemons = await _pokemonService.FetchPokemons();
-            var sortedPokemons =  _pokemonService.SortPokemons(pokemons,sortOption, sortDirection );
+            var sortedPokemons = _pokemonService.SortPokemons(pokemons, sortBy, sortDirection);
             return Ok(sortedPokemons);
         }
-
-
         
+
+
+
     }
 }

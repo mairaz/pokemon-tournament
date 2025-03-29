@@ -8,7 +8,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
-builder.Services.AddScoped<PokemonService>();
+builder.Services.AddScoped<IPokemonService, PokemonService>();
 
 var app = builder.Build();
 

@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using pokemon_tour.Models;
 
 namespace pokemon_tour.Services
 {
-    public class PokemonService
+    public class PokemonService : IPokemonService
     {
         private HttpClient _httpClient;
 
@@ -15,7 +10,7 @@ namespace pokemon_tour.Services
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri("https://pokeapi.co/api/v2/pokemon/");
-        }
+        }   
 
         public async Task<List<Pokemon>> FetchPokemons()
         {
@@ -53,7 +48,7 @@ namespace pokemon_tour.Services
                     Id = pokemon.id,
                     Name = pokemon.name,
                     Type = pokemon.types[0].type.name,
-                    BaseExperience = pokemon.base_experience,           
+                    BaseExperience = pokemon.base_experience,
                     Wins = 0,
                     Losses = 0,
                     Ties = 0
@@ -65,11 +60,11 @@ namespace pokemon_tour.Services
             }
         }
 
-        public List<Pokemon> SortPokemons(List<Pokemon> pokemons, string sortOption, string sortDirection)
+        public List<Pokemon> SortPokemons(List<Pokemon> pokemons, string sortBy, string sortDirection)
         {
-            bool isAscending = sortDirection == "asc";
+            bool isAscending = sortDirection.ToLower() == "asc";
 
-            switch (sortOption.ToLower())
+            switch (sortBy.ToLower())
             {
                 case "name":
                     return isAscending
@@ -94,7 +89,6 @@ namespace pokemon_tour.Services
                 default:
                     return new List<Pokemon>();
             }
-
 
         }
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Mairaz\\Desktop\\zumrails-assesment\\backend\\pokemon-tour\\pokemon-tour.csproj": {}
+    "C:\\Users\\Mairaz\\Desktop\\zumrails-assesment\\backend\\pokemon-tour\\pokemon-tour.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Mairaz\\Desktop\\zumrails-assesment\\backend\\pokemon-tour\\pokemon-tour.csproj": {
+    "C:\\Users\\Mairaz\\Desktop\\zumrails-assesment\\backend\\pokemon-tour\\pokemon-tour.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Mairaz\\Desktop\\zumrails-assesment\\backend\\pokemon-tour\\pokemon-tour.csproj",
+        "projectUniqueName": "C:\\Users\\Mairaz\\Desktop\\zumrails-assesment\\backend\\pokemon-tour\\pokemon-tour.csproj",
         "projectName": "pokemon-tour",
-        "projectPath": "c:\\Users\\Mairaz\\Desktop\\zumrails-assesment\\backend\\pokemon-tour\\pokemon-tour.csproj",
+        "projectPath": "C:\\Users\\Mairaz\\Desktop\\zumrails-assesment\\backend\\pokemon-tour\\pokemon-tour.csproj",
         "packagesPath": "C:\\Users\\Mairaz\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Mairaz\\Desktop\\zumrails-assesment\\backend\\pokemon-tour\\obj\\",
+        "outputPath": "C:\\Users\\Mairaz\\Desktop\\zumrails-assesment\\backend\\pokemon-tour\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Mairaz\\AppData\\Roaming\\NuGet\\NuGet.Config"

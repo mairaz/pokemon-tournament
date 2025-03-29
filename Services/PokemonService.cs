@@ -10,7 +10,19 @@ namespace pokemon_tour.Services
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri("https://pokeapi.co/api/v2/pokemon/");
-        }   
+        }
+
+        private Dictionary<string, string> PokemonType = new Dictionary<string, string>
+    {
+        {"water", "fire" },
+        {"fire", "grass" },
+        {"grass", "electric" },
+        {"electric", "water" },
+        {"ghost", "psychic" },
+        {"psychic", "fighting" },
+        {"fighting", "dark" },
+        {"dark", "ghost" }
+    };
 
         public async Task<List<Pokemon>> FetchPokemons()
         {
@@ -29,8 +41,7 @@ namespace pokemon_tour.Services
             {
                 pokemon.Add(await FetchPokemonsFromApi(id));
             }
-
-            return pokemon;
+            return PokemonBattle(pokemon);
 
         }
 
@@ -49,6 +60,7 @@ namespace pokemon_tour.Services
                     Name = pokemon.name,
                     Type = pokemon.types[0].type.name,
                     BaseExperience = pokemon.base_experience,
+                    Image = pokemon.sprites.front_default,
                     Wins = 0,
                     Losses = 0,
                     Ties = 0
@@ -89,7 +101,46 @@ namespace pokemon_tour.Services
                 default:
                     return new List<Pokemon>();
             }
+        }
 
+        private List<Pokemon> PokemonBattle(List<Pokemon> pokemons)
+        {
+
+            for (int i = 0; i < pokemons.Count; i++)
+            {
+                for (int j = i + 1; j < pokemons.Count; j++)
+                {
+                    if (PokemonType.ContainsKey(pokemons[i].Type) && PokemonType[pokemons[i].Type] == pokemons[j].Type)
+                    {
+                        pokemons[i].Wins++;
+                        pokemons[j].Losses++;
+
+                    }
+                    else if (PokemonType.ContainsKey(pokemons[j].Type) && PokemonType[pokemons[j].Type] == pokemons[i].Type)
+                    {
+                        pokemons[j].Wins++;
+                        pokemons[i].Losses++;
+
+                    }
+                    else if (pokemons[i].BaseExperience > pokemons[j].BaseExperience)
+                    {
+                        pokemons[i].Wins++;
+                        pokemons[j].Losses++;
+
+                    }
+                    else if (pokemons[j].BaseExperience > pokemons[i].BaseExperience)
+                    {
+                        pokemons[j].Wins++;
+                        pokemons[i].Losses++;
+                    }
+                    else
+                    {
+                        pokemons[j].Ties++;
+                        pokemons[i].Ties++;
+                    }
+                }
+            }
+            return pokemons;
         }
 
     }

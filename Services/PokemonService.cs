@@ -53,22 +53,26 @@ namespace pokemon_tour.Services
                 response.EnsureSuccessStatusCode();
                 var pokemon = await response.Content.ReadFromJsonAsync<PokemonApiResponse>();
 
+                if (pokemon == null)
+                {
+                    throw new InvalidOperationException("Failed to fetch Pokemon data from API.");
+                }
 
                 return new Pokemon
                 {
-                    Id = pokemon.id,
-                    Name = pokemon.name,
-                    Type = pokemon.types[0].type.name,
-                    BaseExperience = pokemon.base_experience,
-                    Image = pokemon.sprites.front_default,
+                    Id = pokemon.Id,
+                    Name = pokemon.Name,
+                    Type = pokemon.Types[0].TypeInfo.Name,
+                    BaseExperience = pokemon.BaseExperience,
+                    Image = pokemon.Sprites.frontDefault ?? string.Empty,
                     Wins = 0,
                     Losses = 0,
                     Ties = 0
                 };
             }
-            catch (Exception e)
+            catch (HttpRequestException e)
             {
-                throw new Exception(e.Message);
+                throw new HttpRequestException("An error occurred while fetching the Pokemon data.", e);
             }
         }
 

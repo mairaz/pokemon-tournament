@@ -14,24 +14,24 @@ namespace pokemon_tour.Models
         [JsonPropertyName("id")]
         public int Id { get; set; }
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public required string Name { get; set; }
         [JsonPropertyName("types")]
-        public List<Type> Types { get; set; }
+        public required List<Type> Types { get; set; }
         [JsonPropertyName("sprites")]
-        public Sprites Sprites { get; set; }
+        public required Sprites Sprites { get; set; }
     }
 
 
     public class Type
     {
         [JsonPropertyName("type")]
-        public TypeDetail TypeInfo { get; set; }
+        public required TypeDetail TypeInfo { get; set; }
     }
 
     public class TypeDetail
     {
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public required string Name { get; set; }
     }
 
     public class Sprites

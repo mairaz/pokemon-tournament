@@ -38,22 +38,22 @@ namespace pokemon_tour.Services
             return pokemon;
 
         }
-      
+
         private async Task<Pokemon> FetchPokemonsFromApi(int id)
         {
-
             try
             {
                 var response = await _httpClient.GetAsync(id.ToString());
+                response.EnsureSuccessStatusCode();
                 var pokemon = await response.Content.ReadFromJsonAsync<PokemonApiResponse>();
-           
+
 
                 return new Pokemon
                 {
                     Id = pokemon.id,
                     Name = pokemon.name,
                     Type = pokemon.types[0].type.name,
-                    BaseExperience = pokemon.base_experience,
+                    BaseExperience = pokemon.base_experience,           
                     Wins = 0,
                     Losses = 0,
                     Ties = 0
@@ -63,7 +63,40 @@ namespace pokemon_tour.Services
             {
                 throw new Exception(e.Message);
             }
+        }
+
+        public List<Pokemon> SortPokemons(List<Pokemon> pokemons, string sortOption, string sortDirection)
+        {
+            bool isAscending = sortDirection == "asc";
+
+            switch (sortOption.ToLower())
+            {
+                case "name":
+                    return isAscending
+                     ? pokemons.OrderBy(pokemon => pokemon.Name).ToList()
+                     : pokemons.OrderByDescending(pokemon => pokemon.Name).ToList();
+                case "id":
+                    return isAscending
+                     ? pokemons.OrderBy(pokemon => pokemon.Id).ToList()
+                     : pokemons.OrderByDescending(pokemon => pokemon.Id).ToList();
+                case "wins":
+                    return isAscending
+                    ? pokemons.OrderBy(pokemon => pokemon.Wins).ToList()
+                    : pokemons.OrderByDescending(pokemon => pokemon.Wins).ToList();
+                case "losses":
+                    return isAscending
+                    ? pokemons.OrderBy(pokemon => pokemon.Losses).ToList()
+                    : pokemons.OrderByDescending(pokemon => pokemon.Losses).ToList();
+                case "ties":
+                    return isAscending
+                    ? pokemons.OrderBy(pokemon => pokemon.Ties).ToList()
+                    : pokemons.OrderByDescending(pokemon => pokemon.Ties).ToList();
+                default:
+                    return new List<Pokemon>();
+            }
+
 
         }
+
     }
 }

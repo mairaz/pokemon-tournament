@@ -17,10 +17,11 @@ namespace pokemon_tour.Controllers
             _pokemonService = pokemonService;
         }
       [HttpGet("statistics")]
-        public async Task<ActionResult> GetPokemonStatistics(){
+        public async Task<ActionResult> GetPokemonStatistics([FromQuery] string sortOption, [FromQuery] string sortDirection){
 
-            var pokemon = await _pokemonService.FetchPokemons();
-            return Ok(pokemon);
+            var pokemons = await _pokemonService.FetchPokemons();
+            var sortedPokemons =  _pokemonService.SortPokemons(pokemons,sortOption, sortDirection );
+            return Ok(sortedPokemons);
         }
 
 

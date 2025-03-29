@@ -31,3 +31,4 @@ C:\Users\Mairaz\Desktop\zumrails-assesment\backend\pokemon-tour\obj\Debug\net8.0
 C:\Users\Mairaz\Desktop\zumrails-assesment\backend\pokemon-tour\obj\Debug\net8.0\pokemon-tour.pdb
 C:\Users\Mairaz\Desktop\zumrails-assesment\backend\pokemon-tour\obj\Debug\net8.0\pokemon-tour.genruntimeconfig.cache
 C:\Users\Mairaz\Desktop\zumrails-assesment\backend\pokemon-tour\obj\Debug\net8.0\ref\pokemon-tour.dll
+C:\Users\Mairaz\Desktop\zumrails-assesment\backend\pokemon-tour\obj\Debug\net8.0\pokemon-tour.sourcelink.json
